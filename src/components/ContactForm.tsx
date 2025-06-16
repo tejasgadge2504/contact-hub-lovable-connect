@@ -11,7 +11,7 @@ import { ArrowLeft, Save, User } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ContactFormProps {
-  onSubmit: (contact: Omit<Contact, 'id' | 'created_at' | 'updated_at'>) => void;
+  onSubmit: (contact: Omit<Contact, 'id' | 'created_at' | 'updated_at' | 'user_id'>) => void;
   onCancel: () => void;
   initialData?: Contact | null;
   isEditing?: boolean;
