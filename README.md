@@ -223,4 +223,5 @@ For support and questions:
 
 ---
 
-**Made with ❤️ using Lovable, React, and Supabase**
+**Made with ❤️ using Lovable, React, and Supabase by TEJAS GADGE**
+(www.tejasgadge.xyz)
