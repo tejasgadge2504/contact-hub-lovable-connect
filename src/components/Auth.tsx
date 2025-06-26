@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Mail, Lock, User, LogIn } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +15,7 @@ export const Auth = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +65,9 @@ export const Auth = () => {
         title: "Welcome back!",
         description: "You have successfully signed in.",
       });
+
+      // Navigate to dashboard after successful login
+      navigate('/');
     } catch (error: any) {
       toast({
         title: "Error",
@@ -79,6 +83,9 @@ export const Auth = () => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/`,
+        },
       });
 
       if (error) throw error;
